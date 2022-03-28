@@ -1,0 +1,18 @@
+{
+  "name": "@studio-41/poda-me",
+  "version": "0.0.1",
+  "description": "URL shortener for developers in a hurry",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "author": "Studio-41",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Studio-41/poda.me.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.6.1"
+  }
+}
