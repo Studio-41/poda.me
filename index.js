@@ -79,9 +79,8 @@ const read = async (req, res) => {
     res.writeHead(301, { Location: url })
     res.end()
   } catch (error) {
-    res.writeHead(200, { 'Content-Type': contentType })
-    res.write(JSON.stringify({ error: error.message }))
-    res.end()
+    console.log(error.message)
+    await render(req, res)
   }
 }
 
