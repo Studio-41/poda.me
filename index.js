@@ -1,4 +1,5 @@
 const port = process.env.PORT || 3000
+const protocol = process.env.PROTOCOL || 'http'
 const host = process.env.PUBLIC_HOST || `localhost:3000`
 const storagePath = process.env.STORAGE_PATH || './storage'
 
@@ -18,7 +19,7 @@ const processRequest = async (value) => {
 
   await storage.set(key, value)
 
-  return publicUrl
+  return `${protocol}://${publicUrl}`
 }
 
 const contentType = 'application/json'
