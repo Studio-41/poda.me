@@ -7,6 +7,7 @@ const { createHash } = require('crypto')
 const { writeFile, readFile, existsSync, mkdirSync } = require('fs')
 const { createServer } = require('http')
 const urlParser = require('url').parse
+const { normalize } = require('path')
 
 const processRequest = async (value) => {
   if (!value) {
@@ -110,12 +111,44 @@ const render = async (req, res) => {
   res.end()
 }
 
+const assets = (req, res) => {
+  let filePath = ''
+  try {
+    filePath = decodeURIComponent(`${__dirname}${req.url}`)
+  } catch (error) {
+    res.writeHead(400)
+    res.end(JSON.stringify({ error: `Invalid path, ${error.message}` }))
+    return
+  }
+
+  if (~filePath.indexOf('\0')) {
+    res.writeHead(400)
+    res.end(JSON.stringify({ error: 'Invalid path' }))
+    return
+  }
+
+  filePath = normalize(filePath)
+
+  readFile(filePath, (err, data) => {
+    if (err) {
+      res.writeHead(404)
+      res.end(JSON.stringify(err))
+      return
+    }
+    res.writeHead(200)
+    res.end(data)
+  })
+}
+
 const router = async (req, res) => {
   if (req.method === 'POST') {
     await create(req, res)
     return
   } else if (req.method === 'GET') {
-    if (req.url.length === 7 && req.url.startsWith('/')) {
+    if (req.url.startsWith('/assets')) {
+      assets(req, res)
+      return
+    } else if (req.url.length === 7 && req.url.startsWith('/')) {
       await read(req, res)
     } else {
       await render(req, res)
@@ -142,4 +175,3 @@ void (async () => {
   server.listen(port)
   console.log(`Server running at http://localhost:${port}/, exposed at http://${host}/`)
 })()
-
