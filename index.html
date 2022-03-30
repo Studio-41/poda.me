@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#009b5c" />
     <meta name="description" content="Poda.me is a URL shortener" />
-    <meta property="og:url" content="https://poda.me" />
+    <meta property="og:url" content="{{PUBLIC_URL}}" />
     <meta property="og:title" content="Tracking free URL shortener" />
     <meta property="og:description" content="Quickly create shortened URLs" />
     <meta property="og:image" content="./assets/social-card.png" />
@@ -284,7 +284,7 @@
           <div class="result" id="result">
             <div class="link">
               <span style="margin-right: 5px">Your poda.me link: </span>
-              <!-- <a href="https://poda.me/12345" id="poda_url">https://poda.me/12345</a>  -->
+              <!-- <a href="{{PUBLIC_URL}}/12345" id="poda_url">{{PUBLIC_URL}}/12345</a>  -->
               <button id="send" onclick="javascript:copy()" class="copy">
                 <span id="poda_url"></span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -298,7 +298,7 @@
         </div>
         <footer>
           <button onclick="javascript:copyCode()" class="copy-code">
-            <code id="original_url_clone">curl -X POST https://poda.me?url=[URL]</code>
+            <code id="original_url_clone">curl -X POST {{PUBLIC_URL}}?url=[URL]</code>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
                 d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
@@ -362,8 +362,8 @@
       document.getElementById('send').disabled = isValid
 
         document.getElementById('original_url_clone').innerText = isValid ? 
-        'curl -X POST https://poda.me?url=' + document.getElementById('original_url').value :
-        'curl -X POST https://poda.me?url=[URL]' 
+        'curl -X POST {{PUBLIC_URL}}?url=' + document.getElementById('original_url').value :
+        'curl -X POST {{PUBLIC_URL}}?url=[URL]' 
     }
 
     function poda() {
@@ -381,7 +381,7 @@
           var response = JSON.parse(xhr.responseText)
           document.getElementById('poda_url').innerHTML = response.url
           document.getElementById('original_url').value = ''
-          document.getElementById('original_url_clone').value = 'curl -X POST https://poda.me?url=[URL]'
+          document.getElementById('original_url_clone').value = 'curl -X POST {{PUBLIC_URL}}?url=[URL]'
           document.getElementById('result').style.visibility = 'visible'
           document.getElementById('original_url').focus()
         }

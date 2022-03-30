@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  relisio:
+    container_name: poda
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    environment:
+      - PORT=9000
+      - PROTOCOL=http
+      - PUBLIC_HOST=localhost:9000
+      - STORAGE_PATH=/usr/src/storage
+    volumes:
+      - ./storage:/usr/src/storage

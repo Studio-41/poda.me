@@ -2,6 +2,7 @@ const port = process.env.PORT || 3000
 const protocol = process.env.PROTOCOL || 'http'
 const host = process.env.PUBLIC_HOST || `localhost:3000`
 const storagePath = process.env.STORAGE_PATH || './storage'
+const PUBLIC_URL = `${protocol}://${host}`
 
 const { createHash } = require('crypto')
 const { writeFile, readFile, existsSync, mkdirSync } = require('fs')
@@ -99,7 +100,7 @@ const loadHtml = () =>
       if (err) {
         reject(err)
       }
-      indexHtml = data
+      indexHtml = data.replace(/{{PUBLIC_URL}}/g, PUBLIC_URL)
       resolve()
     })
   })

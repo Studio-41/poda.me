@@ -1,9 +1,31 @@
 Poda Me
 =======
 
-URL shortener for developers in a hurry.
+URL shortener that does not break any of the [GDPR rules](https://poda.me/b70dd8).
 
-This code is FOSS, used by "poda.me", a free, zero-tracking and unlimited URL shortener for everybody. Use this tool to generate URLs and share them with your colleagues and coworkers.
+This is FOSS, zero-tracking, cookieless and unlimited URL shortener for everybody.<br/>
+Use it at [Poda.me](https://poda.me) if you like to, or run Poda as a self-hosted service using NodeJs or [Docker](https://hub.docker.com/r/relisio/poda.me).
+
+<p align="center" width="100%">
+    <img width="100%" src="https://repository-images.githubusercontent.com/475194584/d9d3d961-0c54-49da-afac-dfbef8639940">
+</p>
+
+## Included functionalities</h2>
+
+* `POST`: Create a shortened URL given a URL
+* `GET`: Be redirected to the original URL
+* *more are coming...*
+
+## Run locally
+
+### Using Node JS
+1. clone repository `git clone https://github.com/Studio-41/poda.me.git`
+2. change directory `cd poda.me`
+3. run it (zero deps) `node .`
+4. go to [http://localhost:3000/](http://localhost:3000/)
+
+### Using Docker
+Go to [docker hub](https://hub.docker.com/r/relisio/poda.me)
 
 ## Generate URL
 
@@ -11,13 +33,13 @@ Use the POST API to generate a shortened URL (of an original URL). Pass the `url
 
 ### Request
 ```bash
-curl -X POST https://poda.me?url=https://relisio.com
+curl -X POST "https://poda.me?url=https://relisio.com"
 ```
 
 ### Response
 ```json
 {
-  "url": "poda.me/bf15cd"
+  "url": "https://poda.me/bf15cd"
 }
 ```
 
