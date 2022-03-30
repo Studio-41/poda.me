@@ -3,9 +3,19 @@ Poda Me
 
 URL shortener for developers in a hurry.
 
-This code is FOSS, used by "poda.me", a free, zero-tracking and unlimited URL shortener for everybody. Use this tool to generate URLs and share them with your colleagues and coworkers.
+This code is FOSS, used by [poda.me](https://poda.me), a free, zero-tracking and unlimited URL shortener for everybody.<br/>
+Use this tool to generate URLs and share them with your colleagues and coworkers.
 
-Prefer Docker instead? Pull our image from [docker hub](https://hub.docker.com/r/relisio/poda.me)
+## Run locally
+
+### Using Node JS
+1. clone repository `git clone https://github.com/Studio-41/poda.me.git`
+2. change directory `cd poda.me`
+3. run it (zero deps) `node .`
+4. go to [http://localhost:3000/](http://localhost:3000/)
+
+### Using Docker
+Go to [docker hub](https://hub.docker.com/r/relisio/poda.me)
 
 ## Generate URL
 
