@@ -2,6 +2,11 @@
 
 If you are searching for a zero-tracking, API-oriented URL shortener, give Poda a try. Poda does not break any of the [GDPR rules](https://poda.me/b70dd8) and is [FOSS](https://github.com/Studio-41/poda.me).
 
+<p align="center" width="100%">
+    <img width="95%" src="https://repository-images.githubusercontent.com/475194584/c519c7a4-270f-40a4-a1e8-58158f378664">
+</p>
+
+
 # Demo time
 
 ```yml
