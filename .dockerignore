@@ -1,0 +1,16 @@
+.git/
+.github/
+coverage/
+node_modules/
+.DS_Store
+storage/
+.env
+.dockerignore
+.gitignore
+.prettierignore
+.prettierrc
+docker-compose.yml
+Dockerfile
+pm2.config.js
+README.md
+test.sh
