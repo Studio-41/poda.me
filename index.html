@@ -21,19 +21,8 @@
     <title>Poda Me</title>
     <style>
       * {
-        font-family: 
-        -apple-system,
-        BlinkMacSystemFont,
-        Segoe UI,
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        Fira Sans,
-        Droid Sans,
-        Helvetica Neue,
-        Helvetica,
-        sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+          Droid Sans, Helvetica Neue, Helvetica, sans-serif;
         box-sizing: border-box;
         font-size: 1rem;
       }
@@ -54,7 +43,8 @@
       a {
         text-decoration: none;
       }
-      html, body {
+      html,
+      body {
         margin: 0;
         width: 100vw;
         height: 100vh;
@@ -92,7 +82,7 @@
       .indent {
         margin-left: 20px;
       }
-      
+
       section {
         width: 100vw;
         height: 100vh;
@@ -125,7 +115,7 @@
         display: flex;
         justify-content: center;
       }
-      input[type="url"] {
+      input[type='url'] {
         width: 40%;
         min-width: 280px;
         height: 50px;
@@ -152,7 +142,7 @@
         opacity: 0.2;
       } */
       button.generate svg {
-        fill:white;
+        fill: white;
         width: 35px;
         height: 35px;
       }
@@ -181,7 +171,7 @@
       }
       .logo-img {
         width: 320px;
-        height:80px;
+        height: 80px;
         background-size: cover;
         background-image: url('./assets/hero-logo-light.png');
       }
@@ -192,6 +182,7 @@
         justify-content: center;
         align-items: center;
         margin-top: 20px;
+        visibility: hidden;
       }
       footer {
         width: auto;
@@ -243,9 +234,9 @@
       .dark section {
         background: linear-gradient(to top, #3b3b3b, #525252);
       }
-      .dark input[type="url"] {
-        background: rgba(255,255,255,0.4);
-      } 
+      .dark input[type='url'] {
+        background: rgba(255, 255, 255, 0.4);
+      }
 
       .logo-img {
         background-image: url('./assets/hero-logo-dark.png');
@@ -257,7 +248,6 @@
         fill: white;
       }
       @media only screen and (max-width: 600px) {
-
         .link {
           flex-direction: column;
         }
@@ -268,10 +258,9 @@
         }
         footer .buttons a {
           width: 100%;
-        margin: 5px;
+          margin: 5px;
         }
       }
-
     </style>
   </head>
   <body>
@@ -283,19 +272,25 @@
             <p>Tracking free URL shortener</p>
           </div>
           <div class="input">
-            <input type="url" name="url" id="original_url" onkeydown="handleOnKeyDown()" />
+            <input type="url" name="url" id="original_url" onkeyup="handleOnKeyUp()" onkeydown="handleOnKeyDown()" />
             <button id="send" onclick="poda()" disabled class="generate">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M248.8 4.994C249.9 1.99 252.8 .0001 256 .0001C259.2 .0001 262.1 1.99 263.2 4.994L277.3 42.67L315 56.79C318 57.92 320 60.79 320 64C320 67.21 318 70.08 315 71.21L277.3 85.33L263.2 123C262.1 126 259.2 128 256 128C252.8 128 249.9 126 248.8 123L234.7 85.33L196.1 71.21C193.1 70.08 192 67.21 192 64C192 60.79 193.1 57.92 196.1 56.79L234.7 42.67L248.8 4.994zM427.4 14.06C446.2-4.686 476.6-4.686 495.3 14.06L529.9 48.64C548.6 67.38 548.6 97.78 529.9 116.5L148.5 497.9C129.8 516.6 99.38 516.6 80.64 497.9L46.06 463.3C27.31 444.6 27.31 414.2 46.06 395.4L427.4 14.06zM461.4 59.31L356.3 164.3L379.6 187.6L484.6 82.58L461.4 59.31zM7.491 117.2L64 96L85.19 39.49C86.88 34.98 91.19 32 96 32C100.8 32 105.1 34.98 106.8 39.49L128 96L184.5 117.2C189 118.9 192 123.2 192 128C192 132.8 189 137.1 184.5 138.8L128 160L106.8 216.5C105.1 221 100.8 224 96 224C91.19 224 86.88 221 85.19 216.5L64 160L7.491 138.8C2.985 137.1 0 132.8 0 128C0 123.2 2.985 118.9 7.491 117.2zM359.5 373.2L416 352L437.2 295.5C438.9 290.1 443.2 288 448 288C452.8 288 457.1 290.1 458.8 295.5L480 352L536.5 373.2C541 374.9 544 379.2 544 384C544 388.8 541 393.1 536.5 394.8L480 416L458.8 472.5C457.1 477 452.8 480 448 480C443.2 480 438.9 477 437.2 472.5L416 416L359.5 394.8C354.1 393.1 352 388.8 352 384C352 379.2 354.1 374.9 359.5 373.2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path
+                  d="M248.8 4.994C249.9 1.99 252.8 .0001 256 .0001C259.2 .0001 262.1 1.99 263.2 4.994L277.3 42.67L315 56.79C318 57.92 320 60.79 320 64C320 67.21 318 70.08 315 71.21L277.3 85.33L263.2 123C262.1 126 259.2 128 256 128C252.8 128 249.9 126 248.8 123L234.7 85.33L196.1 71.21C193.1 70.08 192 67.21 192 64C192 60.79 193.1 57.92 196.1 56.79L234.7 42.67L248.8 4.994zM427.4 14.06C446.2-4.686 476.6-4.686 495.3 14.06L529.9 48.64C548.6 67.38 548.6 97.78 529.9 116.5L148.5 497.9C129.8 516.6 99.38 516.6 80.64 497.9L46.06 463.3C27.31 444.6 27.31 414.2 46.06 395.4L427.4 14.06zM461.4 59.31L356.3 164.3L379.6 187.6L484.6 82.58L461.4 59.31zM7.491 117.2L64 96L85.19 39.49C86.88 34.98 91.19 32 96 32C100.8 32 105.1 34.98 106.8 39.49L128 96L184.5 117.2C189 118.9 192 123.2 192 128C192 132.8 189 137.1 184.5 138.8L128 160L106.8 216.5C105.1 221 100.8 224 96 224C91.19 224 86.88 221 85.19 216.5L64 160L7.491 138.8C2.985 137.1 0 132.8 0 128C0 123.2 2.985 118.9 7.491 117.2zM359.5 373.2L416 352L437.2 295.5C438.9 290.1 443.2 288 448 288C452.8 288 457.1 290.1 458.8 295.5L480 352L536.5 373.2C541 374.9 544 379.2 544 384C544 388.8 541 393.1 536.5 394.8L480 416L458.8 472.5C457.1 477 452.8 480 448 480C443.2 480 438.9 477 437.2 472.5L416 416L359.5 394.8C354.1 393.1 352 388.8 352 384C352 379.2 354.1 374.9 359.5 373.2z"
+                />
+              </svg>
             </button>
           </div>
           <div class="result" id="result">
             <div class="link">
-              <span style="margin-right: 5px;">Your poda.me link: </span>
+              <span style="margin-right: 5px">Your poda.me link: </span>
               <!-- <a href="https://poda.me/12345" id="poda_url">https://poda.me/12345</a>  -->
               <button id="send" onclick="javascript:copy()" class="copy">
-                <span id="poda_url">https://poda.me/12345</span>
+                <span id="poda_url"></span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z" />
+                  <path
+                    d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
+                  />
                 </svg>
               </button>
             </div>
@@ -303,19 +298,36 @@
         </div>
         <footer>
           <button onclick="javascript:copyCode()" class="copy-code">
-            <code>curl -X POST https://poda.me?url=https://relisio.com</code>
+            <code id="original_url_clone">curl -X POST https://poda.me?url=[URL]</code>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z" />
+              <path
+                d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
+              />
             </svg>
           </button>
           <div class="buttons">
             <a href="https://hub.docker.com/r/relisio/poda.me" target="_blank" class="external">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg> Self-host from Docker Hub container</a>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path
+                  d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"
+                />
+              </svg>
+              Self-host using Docker</a
+            >
             <a href="https://github.com/Studio-41/poda.me" target="_blank" class="external">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> Fork on GitHub</a>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <path
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                />
+              </svg>
+              Fork on GitHub</a
+            >
           </div>
 
-          <div class="studio-41">Poda.me is a FOSS by <a href="https://41.studio" target="_blank">Studio 41 Software Design S.L.</a> in Barcelona, Spain</div>
+          <div class="studio-41">
+            Poda.me is a FOSS by <a href="https://41.studio" target="_blank">Studio 41 Software Design S.L.</a> in
+            Barcelona, Spain
+          </div>
         </footer>
       </div>
     </section>
@@ -335,21 +347,28 @@
       document.getElementById('result').style.visibility = 'hidden'
       document.getElementById('send').disabled = true
       document.getElementById('poda_url').innerHTML = ''
-      document.getElementById('poda_url').href = ''
 
       if (event.keyCode === 13) {
         poda()
         return
       }
-      var isValid = !validateUrl(original_url.value)
+    }
+
+    function handleOnKeyUp() {
+      var isValid = validateUrl(document.getElementById('original_url').value)
 
       // disable/enable button
       document.getElementById('send').disabled = isValid
+
+        document.getElementById('original_url_clone').innerText = isValid ? 
+        'curl -X POST https://poda.me?url=' + document.getElementById('original_url').value :
+        'curl -X POST https://poda.me?url=[URL]' 
+      
+
     }
 
     function poda() {
       document.getElementById('poda_url').innerHTML = ''
-      document.getElementById('poda_url').href = ''
       var url = document.getElementById('original_url').value
       var isValid = validateUrl(url)
       if (!isValid) {
@@ -362,28 +381,33 @@
         if (xhr.readyState == 4) {
           var response = JSON.parse(xhr.responseText)
           document.getElementById('poda_url').innerHTML = response.url
-          document.getElementById('poda_url').href = response.url
           document.getElementById('original_url').value = ''
-          document.getElementById('original_url').focus()
+          document.getElementById('original_url_clone').value = 'curl -X POST https://poda.me?url=[URL]'
           document.getElementById('result').style.visibility = 'visible'
+          document.getElementById('original_url').focus()
         }
       }
       xhr.send()
     }
 
-    function copy() {
-      console.log('COPY')
-      var value = document.getElementById('poda_url').href
+    function _copy(id) {
+      var value = document.getElementById(id).innerHTML
       navigator.clipboard.writeText(value)
 
-      var originalText = document.getElementById('copy_btn').innerHTML
-      document.getElementById('copy_btn').innerHTML = 'copied! 📋'
+      document.getElementById(id).innerHTML = 'copied!'
 
       setTimeout(function () {
-        document.getElementById('copy_btn').innerHTML = originalText
+        document.getElementById(id).innerHTML = value
       }, 2800)
     }
 
+    function copyCode() {
+      _copy('original_url_clone')
+    }
+
+    function copy() {
+      _copy('poda_url')
+    }
 
     document.getElementById('original_url').focus()
 
@@ -394,6 +418,5 @@
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.getElementsByTagName('body')[0].classList.add('dark')
     }
-
   </script>
 </html>
