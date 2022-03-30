@@ -7,7 +7,7 @@ This is FOSS, zero-tracking, cookieless and unlimited URL shortener for everybod
 Use it at [Poda.me](https://poda.me) if you like to, or run Poda as a self-hosted service using NodeJs or [Docker](https://hub.docker.com/r/relisio/poda.me).
 
 <p align="center" width="100%">
-    <img width="100%" src="https://repository-images.githubusercontent.com/475194584/c519c7a4-270f-40a4-a1e8-58158f378664">
+    <img width="100%" src="https://repository-images.githubusercontent.com/475194584/d9d3d961-0c54-49da-afac-dfbef8639940">
 </p>
 
 ## Included functionalities</h2>
