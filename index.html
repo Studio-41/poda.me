@@ -24,13 +24,13 @@
         font-family: sans-serif;
       }
       code {
-        font-family:'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace';
-        background: #DDD; 
-        padding: 3px 10px; 
+        font-family: 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace';
+        background: #ddd;
+        padding: 3px 10px;
         border-radius: 3px;
       }
       code.large {
-        padding: 10px 15px; 
+        padding: 10px 15px;
         border-radius: 5px;
         line-height: 2.5rem;
       }
@@ -56,7 +56,7 @@
         color: #eee;
       }
       .dark code {
-        background: #555; 
+        background: #555;
       }
       .dark a {
         color: rgb(2, 196, 255);
@@ -71,11 +71,21 @@
   </head>
   <body>
     <header>
-      <img src="./assets/logo.png" width="80" height="80" alt="Podame logo"/>
+      <img src="./assets/logo.png" width="80" height="80" alt="Podame logo" />
       <h1>Poda.me is a URL shortener</h1>
     </header>
 
-    <hr>
+    <hr />
+
+    <div>
+      <input type="url" name="url" id="original_url" onkeydown="handleOnKeyDown()" />
+      <input type="button" value="Generate" id="send" onclick="javascript:poda()" disabled />
+      <div style="display: none" id="result">
+        <p>Poda URL: <a href="" id="poda_url"></a> <a href="#" onclick="javascript:copy()" id="copy_btn">copy to clipboard</a></p>
+      </div>
+    </div>
+
+    <hr />
 
     <h2>Included functionalities</h2>
     <ul>
@@ -83,7 +93,7 @@
       <li><code>GET</code>: Be redirected to the original URL</li>
     </ul>
 
-    <hr/>
+    <hr />
 
     <h2>Not included</h2>
     <ul>
@@ -95,7 +105,7 @@
       <li>subscriptions</li>
     </ul>
 
-    <hr/>
+    <hr />
 
     <h2>How it works</h2>
     <h3>1. Generate a shortened URL</h3>
@@ -118,12 +128,11 @@
       </p>
       <p>
         If you do not like us but the idea, grab the code from
-        <a href="https://github.com/Studio-41/poda.me" target="_blank">https://github.com/Studio-41/poda.me</a>. It is effortless and
-        FOSS.
+        <a href="https://github.com/Studio-41/poda.me" target="_blank">https://github.com/Studio-41/poda.me</a>. It is
+        effortless and FOSS.
       </p>
-
     </div>
-    <hr/>
+    <hr />
 
     <h2>Finally</h2>
     <p>
@@ -132,8 +141,78 @@
     </p>
   </body>
   <script>
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.getElementsByTagName("body")[0].classList.add("dark");
+    function validateUrl(x) {
+      try {
+        var url = new URL(x)
+
+        return url.protocol === 'http:' || url.protocol === 'https:'
+      } catch (error) {
+        return false
+      }
     }
+
+    function handleOnKeyDown() {
+      document.getElementById('result').style.display = 'none'
+      document.getElementById('send').disabled = true
+      document.getElementById('poda_url').innerHTML = ''
+      document.getElementById('poda_url').href = ''
+
+      if (event.keyCode === 13) {
+        poda()
+        return
+      }
+      var isValid = !validateUrl(original_url.value)
+
+      // disable/enable button
+      document.getElementById('send').disabled = isValid
+    }
+
+    function poda() {
+      document.getElementById('poda_url').innerHTML = ''
+      document.getElementById('poda_url').href = ''
+      var url = document.getElementById('original_url').value
+      var isValid = validateUrl(url)
+      if (!isValid) {
+        return
+      }
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', `/?url=${url}`, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          var response = JSON.parse(xhr.responseText)
+          document.getElementById('poda_url').innerHTML = response.url
+          document.getElementById('poda_url').href = response.url
+          document.getElementById('original_url').value = ''
+          document.getElementById('original_url').focus()
+          document.getElementById('result').style.display = 'block'
+        }
+      }
+      xhr.send()
+    }
+
+    function copy() {
+      var value = document.getElementById('poda_url').href
+      navigator.clipboard.writeText(value)
+
+      var originalText = document.getElementById('copy_btn').innerHTML
+      document.getElementById('copy_btn').innerHTML = 'copied! 📋'
+
+      setTimeout(function () {
+        document.getElementById('copy_btn').innerHTML = originalText
+      }, 2800)
+    }
+
+
+    document.getElementById('original_url').focus()
+
+    if (!navigator || !navigator.clipboard || !window.isSecureContext) {
+      document.getElementById('copy_btn').style.display = 'none'
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.getElementsByTagName('body')[0].classList.add('dark')
+    }
+
   </script>
 </html>
