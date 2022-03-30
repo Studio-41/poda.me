@@ -1,10 +1,16 @@
 Poda Me
 =======
 
-URL shortener for developers in a hurry.
+URL shortener that does not break any of the [GDPR rules](https://poda.me/b70dd8).
 
-This code is FOSS, used by [poda.me](https://poda.me), a free, zero-tracking and unlimited URL shortener for everybody.<br/>
-Use this tool to generate URLs and share them with your colleagues and coworkers.
+This is FOSS, zero-tracking, cookieless and unlimited URL shortener for everybody.<br/>
+Use it at [Poda.me](https://poda.me) if you like to, or run Poda as a self-hosted service using NodeJs or [Docker](https://hub.docker.com/r/relisio/poda.me).
+
+## Included functionalities</h2>
+
+* `POST`: Create a shortened URL given a URL
+* `GET`: Be redirected to the original URL
+* *more are coming...*
 
 ## Run locally
 
