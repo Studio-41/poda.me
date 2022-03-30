@@ -1,26 +1,27 @@
-Poda Me
-=======
+[Poda.Me](https://poda.me) Poda.me is a URL shortener.
 
-URL shortener for developers in a hurry.
+If you are searching for a zero-tracking, API-oriented URL shortener, give Poda a try. Poda does not break any of the [GDPR rules](https://poda.me/b70dd8) and is [FOSS](https://github.com/Studio-41/poda.me).
 
-This code is FOSS, used by "poda.me", a free, zero-tracking and unlimited URL shortener for everybody. Use this tool to generate URLs and share them with your colleagues and coworkers.
+# Demo time
 
-Prefer Docker instead? Pull our image from [docker hub](https://hub.docker.com/r/relisio/poda.me)
-
-## Generate URL
-
-Use the POST API to generate a shortened URL (of an original URL). Pass the `url` using the query-string (`?url=`).
-
-### Request
-```bash
-curl -X POST "https://poda.me?url=https://relisio.com"
-```
-
-### Response
-```json
-{
-  "url": "https://poda.me/bf15cd"
-}
+```yml
+version: '3.8'
+services:
+  poda:
+    container_name: poda
+    image: relisio/poda.me
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    environment:
+      - PORT=9000
+      - PROTOCOL=http
+      - PUBLIC_HOST=localhost:9000
+      - STORAGE_PATH=/usr/src/storage
+    volumes:
+      - ./storage:/usr/src/storage
 ```
 
 # License
