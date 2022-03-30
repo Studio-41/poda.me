@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#009b5c" />
     <meta name="description" content="Poda.me is a URL shortener" />
-    <meta property="og:url" content="https://poda.me" />
+    <meta property="og:url" content="{{PUBLIC_URL}}" />
     <meta property="og:title" content="Tracking free URL shortener" />
     <meta property="og:description" content="Quickly create shortened URLs" />
     <meta property="og:image" content="./assets/social-card.png" />
@@ -104,11 +104,11 @@
         You may POST a URL using the <i>querystring</i> against this domain, we store it for you
         <strong>for 24 hours</strong>.
       </p>
-      <code class="large"> curl -X POST https://poda.me?url=https://relisio.com </code>
+      <code class="large"> curl -X POST {{PUBLIC_URL}}?url=https://relisio.com </code>
     </div>
     <h3>2. Store the response</h3>
     <div class="indent">
-      <code class="large"> { "url": "poda.me/bf15cd" } </code>
+      <code class="large"> { "url": "{{PUBLIC_URL}}/bf15cd" } </code>
     </div>
     <h3>3. Use the <i>poda</i> URL</h3>
     <div class="indent">
