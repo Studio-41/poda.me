@@ -45,11 +45,16 @@ const storage = {
   get: async (publicUrl) =>
     new Promise((resolve, reject) => {
       const key = createHash('sha256').update(publicUrl).digest('hex')
-      readFile(`${storagePath}/${key}`, (err, data) => {
+      readFile(`${storagePath}/${key}`, {encoding: 'utf8'}, (err, data) => {
         if (err) {
           reject(err)
         }
-        resolve(data)
+        let url = data
+        if (!data.startsWith('http')) {
+          url = `http://${data}`
+        }
+
+        resolve(url)
       })
     }),
 }
