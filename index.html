@@ -5,15 +5,15 @@
     <link rel="icon" href="./assets/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#009b5c" />
-    <meta name="description" content="Poda.me is a URL shortener" />
+    <meta name="description" content="Zero tracking, GDPR compliant URL shortener" />
     <meta property="og:url" content="{{PUBLIC_URL}}" />
-    <meta property="og:title" content="Tracking free URL shortener" />
-    <meta property="og:description" content="Quickly create shortened URLs" />
+    <meta property="og:title" content="Poda.me" />
+    <meta property="og:description" content="Quickly create shortened URLs with zero tracking" />
     <meta property="og:image" content="./assets/social-card.png" />
 
     <meta name="msapplication-square512x512logo" content="/assets/logo.png" />
     <link rel="apple-touch-icon" href="./assets/logo.png" />
-    <meta name="apple-mobile-web-app-title" content="Tracking free URL shortener" />
+    <meta name="apple-mobile-web-app-title" content="Poda.me" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -46,29 +46,12 @@
       html,
       body {
         margin: 0;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
       }
       body {
         background-color: #fff;
         color: #5e5e5e;
-      }
-      code {
-        font-family: 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace';
-        /* line-height: 2.5rem; */
-        text-align: left;
-      }
-      .copy-code {
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        border-radius: 5px;
-        background: #666;
-        color: white;
-      }
-      .copy-code:hover {
-        background: #333;
-        cursor: pointer;
       }
       header {
         width: 100%;
@@ -84,8 +67,8 @@
       }
 
       section {
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -115,7 +98,7 @@
         display: flex;
         justify-content: center;
       }
-      input[type='text'] {
+      input {
         width: 40%;
         min-width: 280px;
         height: 50px;
@@ -128,23 +111,20 @@
         border-radius: 3px;
       }
       button.generate {
-        width: 50px;
+        width: auto;
         height: 50px;
         margin-left: 10px;
         background: radial-gradient(#009b5c, #00be78);
+        color: white;
         opacity: 0.8;
       }
       button.generate:hover:not(:disabled) {
         opacity: 1;
         cursor: pointer;
       }
-      /* button.generate:disabled {
+      button.generate:disabled {
         opacity: 0.2;
-      } */
-      button.generate svg {
-        fill: white;
-        width: 35px;
-        height: 35px;
+        background: radial-gradient(#999, #ccc);
       }
       button.copy {
         background: #009b5c;
@@ -185,13 +165,31 @@
         visibility: hidden;
       }
       footer {
-        width: auto;
+        width: 90%;
         min-width: 280px;
         padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+      }
+      code {
+        font-size: 0.75rem;
+        width: 300px;
+        font-family: 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace';
+        text-align: left;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+      .copy-code {
+        background: #666;
+        color: white;
+      }
+      .copy-code:hover {
+        background: #333;
+        cursor: pointer;
       }
       footer .buttons {
         width: 100%;
@@ -248,8 +246,18 @@
         fill: white;
       }
       @media only screen and (max-width: 600px) {
-        .link {
+        .link, .input {
           flex-direction: column;
+        }
+        input {
+          min-width: 320px;
+          margin: auto;
+        }
+
+        button.generate {
+          width: 150px;
+          height: 40px;
+          margin: 10px auto;
         }
         footer .buttons {
           flex-direction: column;
@@ -269,65 +277,55 @@
         <div class="center">
           <div class="logo">
             <div class="logo-img"></div>
-            <p>Tracking free URL shortener</p>
+            <p>Zero tracking URL shortener</p>
           </div>
           <div class="input">
+            <label for="original_url" style="display: none">Enter your URL here</label>
             <input type="text" autocomplete="off" id="original_url"  onkeyup="handleOnKeyUp()" onkeydown="handleOnKeyDown()" />
-            <button id="send" onclick="poda()" disabled class="generate">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path
-                  d="M248.8 4.994C249.9 1.99 252.8 .0001 256 .0001C259.2 .0001 262.1 1.99 263.2 4.994L277.3 42.67L315 56.79C318 57.92 320 60.79 320 64C320 67.21 318 70.08 315 71.21L277.3 85.33L263.2 123C262.1 126 259.2 128 256 128C252.8 128 249.9 126 248.8 123L234.7 85.33L196.1 71.21C193.1 70.08 192 67.21 192 64C192 60.79 193.1 57.92 196.1 56.79L234.7 42.67L248.8 4.994zM427.4 14.06C446.2-4.686 476.6-4.686 495.3 14.06L529.9 48.64C548.6 67.38 548.6 97.78 529.9 116.5L148.5 497.9C129.8 516.6 99.38 516.6 80.64 497.9L46.06 463.3C27.31 444.6 27.31 414.2 46.06 395.4L427.4 14.06zM461.4 59.31L356.3 164.3L379.6 187.6L484.6 82.58L461.4 59.31zM7.491 117.2L64 96L85.19 39.49C86.88 34.98 91.19 32 96 32C100.8 32 105.1 34.98 106.8 39.49L128 96L184.5 117.2C189 118.9 192 123.2 192 128C192 132.8 189 137.1 184.5 138.8L128 160L106.8 216.5C105.1 221 100.8 224 96 224C91.19 224 86.88 221 85.19 216.5L64 160L7.491 138.8C2.985 137.1 0 132.8 0 128C0 123.2 2.985 118.9 7.491 117.2zM359.5 373.2L416 352L437.2 295.5C438.9 290.1 443.2 288 448 288C452.8 288 457.1 290.1 458.8 295.5L480 352L536.5 373.2C541 374.9 544 379.2 544 384C544 388.8 541 393.1 536.5 394.8L480 416L458.8 472.5C457.1 477 452.8 480 448 480C443.2 480 438.9 477 437.2 472.5L416 416L359.5 394.8C354.1 393.1 352 388.8 352 384C352 379.2 354.1 374.9 359.5 373.2z"
-                />
-              </svg>
+            <button id="send" onclick="poda()" disabled class="generate" aria-label="Generate link">
+              Podame
             </button>
           </div>
           <div class="result" id="result">
             <div class="link">
               <span style="margin-right: 5px">Your poda.me link: </span>
-              <!-- <a href="{{PUBLIC_URL}}/12345" id="poda_url">{{PUBLIC_URL}}/12345</a>  -->
-              <button id="send" onclick="javascript:copy()" class="copy">
+              <button id="send" onclick="javascript:copy()" class="copy" aria-label="Copy poda.me link">
                 <span id="poda_url"></span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path
-                    d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                  <path d="M60,76.67v14.64c0,4.8-3.89,8.69-8.69,8.69H8.69c-4.8,0-8.69-3.89-8.69-8.69V36.02c0-4.8,3.89-8.69,8.69-8.69h27.31V63.98c0,6.99,5.69,12.69,12.69,12.69h11.31Zm40-12.69V8.69c0-4.8-3.89-8.69-8.69-8.69H48.69c-4.8,0-8.69,3.89-8.69,8.69V63.98c0,4.8,3.89,8.69,8.69,8.69h42.62c4.8,0,8.69-3.89,8.69-8.69Z" />
                 </svg>
               </button>
             </div>
           </div>
         </div>
         <footer>
-          <button onclick="javascript:copyCode()" class="copy-code">
+          <button onclick="javascript:copyCode()" class="copy-code" aria-label="Copy API call">
             <code id="original_url_clone">curl -X POST {{PUBLIC_URL}}?url=[URL]</code>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path
-                d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path d="M60,76.67v14.64c0,4.8-3.89,8.69-8.69,8.69H8.69c-4.8,0-8.69-3.89-8.69-8.69V36.02c0-4.8,3.89-8.69,8.69-8.69h27.31V63.98c0,6.99,5.69,12.69,12.69,12.69h11.31Zm40-12.69V8.69c0-4.8-3.89-8.69-8.69-8.69H48.69c-4.8,0-8.69,3.89-8.69,8.69V63.98c0,4.8,3.89,8.69,8.69,8.69h42.62c4.8,0,8.69-3.89,8.69-8.69Z" />
             </svg>
           </button>
           <div class="buttons">
             <a href="https://hub.docker.com/r/relisio/poda.me" target="_blank" class="external">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                <path
-                  d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"
-                />
+              <!-- https://www.docker.com/company/newsroom/media-resources/ -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M55.1,14.1c.38,.25,.51,.61,.51,1.06-.01,2.44,0,4.88,0,7.32,0,.77-.28,1.04-1.06,1.04-2.73,0-5.47,0-8.2,0-.87,0-1.11-.23-1.11-1.08,0-2.42,0-4.85,0-7.27,0-.46,.12-.81,.51-1.06h9.37ZM3.41,48.07c-1.91,0-3.52,1.36-3.41,3.43,.12,2.3,.21,4.62,.49,6.9,.63,5.04,2.04,9.85,4.54,14.3,2.86,5.09,6.96,8.69,12.52,10.6,4.95,1.7,10.07,2.39,15.27,2.56,3.12,.11,6.24-.03,9.35-.35,4.4-.46,8.69-1.38,12.86-2.84,9.67-3.37,17.33-9.32,22.99-17.84,2.6-3.92,4.64-8.13,6.37-12.5,.17-.43,.39-.57,.84-.56,2.18,.05,4.32-.23,6.36-1,4.02-1.52,6.92-4.18,8.34-8.33,.12-.34,.05-.53-.22-.76-1.11-.95-2.39-1.56-3.77-1.96-2.87-.82-5.77-.81-8.69-.37-.42,.06-.54-.06-.62-.44-.98-4.88-3.82-8.38-8.1-10.78-.29-.16-.46-.13-.66,.14-1.53,2.09-2.62,4.39-3.22,6.91-.88,3.71-.57,7.29,1.37,10.64,.24,.42,.18,.59-.25,.77-2.32,1-4.77,1.47-7.28,1.48-10.85,.03-21.7,.01-32.55,.01-10.85,0-21.7,.02-32.55-.02Zm22.44-13.23c1.36,0,2.72,0,4.08,0,.84,0,1.11-.26,1.11-1.1,0-2.39,0-4.78,0-7.17,0-.9-.27-1.17-1.16-1.17-2.71,0-5.41,0-8.12,0-.86,0-1.13,.28-1.14,1.14,0,2.41,0,4.82,0,7.22,0,.8,.28,1.08,1.09,1.08,1.38,0,2.76,0,4.13,0h0Zm16.52,0c.73,0,1.03-.3,1.03-1.03,0-2.44,0-4.88,0-7.32,0-.8-.29-1.08-1.09-1.08-2.74,0-5.48,0-8.22,0-.82,0-1.1,.29-1.1,1.12,0,2.41,0,4.81,0,7.22,0,.83,.28,1.09,1.12,1.1,1.36,0,2.72,0,4.08,0,1.39,0,2.79,0,4.18,0Zm16.07,1.9c-.59,0-.91,.29-.92,.88-.01,2.54-.01,5.08,0,7.62,0,.63,.31,.92,.93,.92,2.81,0,5.63,0,8.44,0,.75,0,1.03-.28,1.03-1.03,.01-2.46,0-4.91,0-7.37,0-.76-.28-1.02-1.03-1.02-1.38,0-2.76,0-4.13,0-1.44,0-2.89,0-4.33,0Zm-24.21,0c-1.05,0-1.25,.2-1.25,1.25,0,1.91,0,3.82,0,5.72,0,.51-.02,1.03,0,1.54,.03,.59,.31,.9,.85,.9,2.88,0,5.76,0,8.64,0,.62,0,.9-.28,.9-.88,.02-2.52,.02-5.05,0-7.57,0-.69-.3-.95-1-.95-1.39,0-2.79,0-4.18,0-1.33,0-2.66,0-3.98,0Zm-24.56,0c-1.01,0-1.22,.21-1.22,1.24,0,2.34,0,4.68,0,7.02,0,.91,.23,1.17,1.14,1.17,2.73,0,5.46,0,8.19-.01,.83,0,1.07-.24,1.08-1.07,.01-2.44,.01-4.88,0-7.32,0-.75-.3-1.02-1.04-1.02-1.39,0-2.79,0-4.18,0-1.33,0-2.66,0-3.98,0Zm11.98,0c-.72,0-1.01,.26-1.01,.99-.01,2.49-.01,4.98,0,7.48,0,.67,.3,.95,.95,.95,2.8,0,5.6,0,8.4,0,.77,0,1.05-.28,1.05-1.06,0-2.44,0-4.88,0-7.33,0-.77-.29-1.03-1.07-1.03-1.36,0-2.72,0-4.09,0-1.41,0-2.82,0-4.24,0Zm32.97-1.9c.7,0,.98-.27,.98-.96,0-2.51,0-5.01,0-7.52,0-.64-.3-.95-.95-.95-2.81,0-5.61-.01-8.42,0-.75,0-1,.29-1,1.05,0,2.46,0,4.91,0,7.37,0,.76,.25,1.01,1.02,1.01,1.38,0,2.76,0,4.13,0,1.41,0,2.82,0,4.23,0Zm-8.42,1.9c-.7,0-.97,.27-.97,.96,0,2.49,0,4.98,0,7.47,0,.7,.27,.98,.96,.99,2.82,0,5.63,0,8.45,0,.68,0,.96-.29,.96-.98,0-2.47,0-4.95,0-7.42,0-.76-.26-1.01-1.03-1.01-1.38,0-2.76,0-4.13,0-1.41,0-2.82,0-4.23,0Z" />
               </svg>
-              Self-host using Docker</a
-            >
+              Self-host using Docker
+            </a>
             <a href="https://github.com/Studio-41/poda.me" target="_blank" class="external">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-                <path
-                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-                />
+              <!-- https://github.com/logos -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M50,0C22.39,0,0,22.39,0,50c0,22.09,14.33,40.83,34.2,47.44,2.5,.46,3.41-1.09,3.41-2.41,0-1.19-.04-4.33-.07-8.5-13.91,3.02-16.84-6.7-16.84-6.7-2.27-5.78-5.55-7.31-5.55-7.31-4.54-3.1,.34-3.04,.34-3.04,5.02,.35,7.66,5.15,7.66,5.15,4.46,7.64,11.7,5.43,14.55,4.15,.45-3.23,1.75-5.43,3.17-6.68-11.1-1.26-22.78-5.55-22.78-24.71,0-5.46,1.95-9.92,5.15-13.42-.51-1.26-2.23-6.35,.49-13.23,0,0,4.2-1.34,13.75,5.13,3.99-1.11,8.27-1.66,12.52-1.68,4.25,.02,8.52,.57,12.52,1.68,9.55-6.47,13.74-5.13,13.74-5.13,2.73,6.88,1.01,11.97,.5,13.23,3.2,3.5,5.14,7.96,5.14,13.42,0,19.21-11.69,23.43-22.83,24.67,1.8,1.54,3.39,4.6,3.39,9.26,0,6.68-.06,12.08-.06,13.72,0,1.34,.9,2.89,3.44,2.4,19.85-6.62,34.16-25.35,34.16-47.44C100,22.39,77.61,0,50,0Z" />
               </svg>
-              Fork on GitHub</a
-            >
+              Fork on GitHub
+            </a>
           </div>
 
           <div class="studio-41">
             Poda.me is a FOSS by <a href="https://41.studio" target="_blank">Studio 41 Software Design S.L.</a> in
             Barcelona, Spain<br/>
-            hosted at <a href="https://clouding.io">clouding.io</a>
+            hosted at <a href="https://clouding.io" target="_blank">clouding.io</a>
           </div>
         </footer>
       </div>
