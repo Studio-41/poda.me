@@ -337,7 +337,6 @@
 
     function handleOnKeyDown() {
       document.getElementById('result').style.visibility = 'hidden'
-      document.getElementById('send').disabled = true
       document.getElementById('poda_url').innerHTML = ''
 
       if (event.keyCode === 13) {
@@ -347,23 +346,24 @@
     }
 
     function handleOnKeyUp() {
-      var isValid = validateUrl(document.getElementById('original_url').value)
+      var isValid = validateUrl(document.getElementById('original_url').value.trim())
 
       // disable/enable button
       document.getElementById('send').disabled = !isValid
 
         document.getElementById('original_url_clone').innerText = isValid ? 
-        'curl -X POST {{PUBLIC_URL}}?url=' + document.getElementById('original_url').value :
+        'curl -X POST {{PUBLIC_URL}}?url=' + document.getElementById('original_url').value.trim() :
         'curl -X POST {{PUBLIC_URL}}?url=[URL]' 
     }
 
     function poda() {
       document.getElementById('poda_url').innerHTML = ''
-      var url = document.getElementById('original_url').value
+      var url = document.getElementById('original_url').value.trim()
       var isValid = validateUrl(url)
       if (!isValid) {
         return
       }
+      document.getElementById('send').disabled = true
       var xhr = new XMLHttpRequest()
       xhr.open('POST', `/?url=${url}`, true)
       xhr.setRequestHeader('Content-Type', 'application/json')
