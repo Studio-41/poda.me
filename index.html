@@ -115,7 +115,7 @@
         display: flex;
         justify-content: center;
       }
-      input[type='url'] {
+      input[type='text'] {
         width: 40%;
         min-width: 280px;
         height: 50px;
@@ -234,7 +234,7 @@
       .dark section {
         background: linear-gradient(to top, #3b3b3b, #525252);
       }
-      .dark input[type='url'] {
+      .dark input[type='text'] {
         background: rgba(255, 255, 255, 0.4);
       }
 
@@ -272,7 +272,7 @@
             <p>Tracking free URL shortener</p>
           </div>
           <div class="input">
-            <input type="url" name="url" id="original_url" onkeyup="handleOnKeyUp()" onkeydown="handleOnKeyDown()" />
+            <input type="text" autocomplete="off" id="original_url"  onkeyup="handleOnKeyUp()" onkeydown="handleOnKeyDown()" />
             <button id="send" onclick="poda()" disabled class="generate">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <path
@@ -359,7 +359,7 @@
       var isValid = validateUrl(document.getElementById('original_url').value)
 
       // disable/enable button
-      document.getElementById('send').disabled = isValid
+      document.getElementById('send').disabled = !isValid
 
         document.getElementById('original_url_clone').innerText = isValid ? 
         'curl -X POST {{PUBLIC_URL}}?url=' + document.getElementById('original_url').value :
