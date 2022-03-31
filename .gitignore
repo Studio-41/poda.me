@@ -2,3 +2,4 @@
 storage
 node_modules
 test.sh
+pm2.config.js
