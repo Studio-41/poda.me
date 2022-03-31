@@ -279,8 +279,8 @@
             <p>Zero tracking URL shortener</p>
           </div>
           <div class="input">
-            <label for="original_url" style="display: none">Enter your URL here</label>
             <input type="text" autocomplete="off" id="original_url"  onkeyup="handleOnKeyUp()" onkeydown="handleOnKeyDown()" />
+            <label for="original_url" hidden>Enter your URL here</label>
             <button id="send" onclick="poda()" disabled class="generate" aria-label="Generate link">
               Podame
             </button>
