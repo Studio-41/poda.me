@@ -359,7 +359,7 @@
       var isValid = validateUrl(document.getElementById('original_url').value)
 
       // disable/enable button
-      document.getElementById('send').disabled = isValid
+      document.getElementById('send').disabled = !isValid
 
         document.getElementById('original_url_clone').innerText = isValid ? 
         'curl -X POST {{PUBLIC_URL}}?url=' + document.getElementById('original_url').value :
