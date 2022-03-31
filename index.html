@@ -333,13 +333,7 @@
   </body>
   <script>
     function validateUrl(x) {
-      try {
-        var url = new URL(x)
-
-        return url.protocol === 'http:' || url.protocol === 'https:'
-      } catch (error) {
-        return false
-      }
+      return x && x.length > 0
     }
 
     function handleOnKeyDown() {
