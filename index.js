@@ -151,7 +151,7 @@ const router = async (req, res) => {
       return
     } else if (req.url.length === 7 && req.url.startsWith('/')) {
       await read(req, res)
-    } else if (req.url === ('/robot.txt')) {
+    } else if (req.url === ('/robots.txt')) {
       res.writeHead(200, { 'Content-Type': 'text/plain' })
       res.end('User-agent: *\nDisallow: /\nAllow: /index.html')
     } else {
