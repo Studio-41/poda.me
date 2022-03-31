@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="./assets/favicon.png" />
+    <link rel="icon" href="/assets/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#009b5c" />
     <meta name="description" content="Zero tracking, GDPR compliant URL shortener" />
     <meta property="og:url" content="{{PUBLIC_URL}}" />
-    <meta property="og:title" content="Poda.me" />
-    <meta property="og:description" content="Quickly create shortened URLs with zero tracking" />
-    <meta property="og:image" content="./assets/social-card.png" />
+    <meta property="og:title" content="Poda.me, a free URL shortener" />
+    <meta property="og:description" content="Quickly create shortened URLs with zero tracking, and GDPR compliance" />
+    <meta property="og:image" content="/assets/social-card.png" />
 
     <meta name="msapplication-square512x512logo" content="/assets/logo.png" />
-    <link rel="apple-touch-icon" href="./assets/logo.png" />
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
     <meta name="apple-mobile-web-app-title" content="Poda.me" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -279,8 +279,8 @@
             <p>Zero tracking URL shortener</p>
           </div>
           <div class="input">
-            <label for="original_url" style="display: none">Enter your URL here</label>
             <input type="text" autocomplete="off" id="original_url"  onkeyup="handleOnKeyUp()" onkeydown="handleOnKeyDown()" />
+            <label for="original_url" hidden>Enter your URL here</label>
             <button id="send" onclick="poda()" disabled class="generate" aria-label="Generate link">
               Podame
             </button>
