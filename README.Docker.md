@@ -3,7 +3,7 @@
 If you are searching for a zero-tracking, API-oriented URL shortener, give Poda a try. Poda does not break any of the [GDPR rules](https://poda.me/b70dd8) and is [FOSS](https://github.com/Studio-41/poda.me).
 
 <p align="center" width="100%">
-    <img width="95%" src="https://repository-images.githubusercontent.com/475194584/d9d3d961-0c54-49da-afac-dfbef8639940">
+    <img width="95%" src="https://poda.me/f8b0e5">
 </p>
 
 
